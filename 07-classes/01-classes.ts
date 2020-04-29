@@ -5,9 +5,9 @@
 
 /**
  * Modifiers
- *     --> 1. public - This method can be called any where, any time.
- *     --> 2. This method can only be called by other methods in this class.
- *     --> 3. This method can be called by other methods in this class, or by other methods in child classes.
+ *     --> 1. public(DEFAULT) - This method, property can be called any where, any time.
+ *     --> 2. private - This method, property can only be called by other methods in this class.
+ *     --> 3. protected - This method, property can be called by other methods in this class, or by other methods in child classes.
  */
 
 class Person {
@@ -29,6 +29,7 @@ class Person {
 const abhishek = new Person("Abhishek Baghel", 21);
 console.log(abhishek);
 console.log(abhishek.summary());
+
 /**
  * Inheritance
  */
@@ -73,6 +74,9 @@ class ElectronicItem {
     }
 
     public set type(newType: string) {
+        if (!newType) {
+            throw new Error('Please Enter Type');
+        }
         this._type = newType;
     }
 
@@ -102,3 +106,17 @@ console.log(eItemOne.summary());
 
 console.log(ElectronicItem.__NAME__);
 console.log(ElectronicItem.classLevel());
+
+
+class User {
+    constructor(private readonly _id: string, private _name: string) {}
+
+    static create(id: string, name: string) {
+        return new this(id, name);
+    }
+}
+
+const user1 = new User('1', 'Abhishek Baghel');
+console.log(user1);
+const user2 = User.create('2', 'Dylan Baghel');
+console.log(user2);

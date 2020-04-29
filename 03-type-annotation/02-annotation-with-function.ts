@@ -4,7 +4,7 @@
  *
  * Type Inference For Functions
  *  --> Typescript tries to figure out what type of value a function will return.
- * --> Don't Use Type Inference For Functions.s
+ *  --> Don't Use Type Inference For Functions.
  */
 
 const add = (x: number, y: number): number => {
@@ -28,14 +28,14 @@ const logger = (message: string) => {
 
 // Never Return
 const throwError = (): never => {
-    throw new Error("Never Completes");
+    throw new Error('Never Completes');
 };
 
 /**
  * Destructuring With Annotations
  */
 const person = {
-    name: "Abhishek Baghel",
+    name: 'Abhishek Baghel',
     age: 21,
 };
 
@@ -54,3 +54,13 @@ const logPersonDestructuring = ({
     console.log(name, age);
 };
 logPersonDestructuring(person);
+
+/**
+ * Function Types With Callback Functions
+ */
+const sum = (x: number, y: number, cb: (num: number) => void): void => {
+    cb(x + y);
+};
+sum(10, 15, (result) => {
+    console.log(result);
+});
